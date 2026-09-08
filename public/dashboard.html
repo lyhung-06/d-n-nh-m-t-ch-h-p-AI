@@ -1,0 +1,12 @@
+<!doctype html><html lang='vi'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Dashboard</title><link rel='stylesheet' href='/css/style.css'></head><body><div id='app'></div><script src='/js/app.js'></script><script>
+function formatDate(v){if(!v)return 'Chưa có deadline';const d=new Date(v+'T00:00:00');return d.toLocaleDateString('vi-VN')}
+(async()=>{
+  let d=await api('/api/dashboard/summary');if(!d)return;
+  const alerts=d.overdueTasks||[];
+  const alertHtml=alerts.length
+    ? `<section class='alert'><h3>⚠️ Cảnh báo nhiệm vụ quá hạn</h3><p>Có <b>${alerts.length}</b> nhiệm vụ chưa hoàn thành và đã vượt deadline. Bạn nên xử lý các nhiệm vụ này sớm.</p>${alerts.map(t=>`<div class='alert-item'><div><div class='alert-title'>${esc(t.title)}</div><div class='deadline'>📁 ${esc(t.project?.name||'')} · 👤 ${esc(t.assignee?.name||'Chưa phân công')}</div><div class='overdue'>⏰ Deadline: ${formatDate(t.deadline)} · Quá hạn</div></div><div class='alert-actions'><a class='link-btn' href='tasks.html'>Xử lý nhiệm vụ</a></div></div>`).join('')}</section>`
+    : `<section class='alert empty-alert'><h3>✅ Không có nhiệm vụ quá hạn</h3><p>Tất cả nhiệm vụ hiện tại đều đang trong thời hạn hoặc đã hoàn thành.</p></section>`;
+  app.innerHTML=shell('Dashboard',`<div class='cards'>${stat('📁',d.stats.projects,'Dự án')}${stat('✅',d.stats.tasks,'Nhiệm vụ')}${stat('🎯',d.stats.done,'Hoàn thành')}${stat('📈',d.stats.progress+'%','Tiến độ')}${stat('⏰',d.stats.overdue,'Quá hạn')}${stat('👥',d.stats.members,'Thành viên')}</div>${alertHtml}<section class='panel'><h3>Tiến độ dự án</h3>${d.projects.map(p=>`<div class='row'><div class='grow'><b>${esc(p.name)}</b><p>${esc(p.description)}</p><div class='bar'><i style='width:${p.progress}%'></i></div></div><b>${p.progress}%</b><span class='badge'>${status(p.status)}</span></div>`).join('')}</section><section class='panel'><h3>Nhiệm vụ gần đây</h3><table><tr><th>Nhiệm vụ</th><th>Dự án</th><th>Trạng thái</th><th>Deadline</th></tr>${d.tasks.map(t=>`<tr><td>${esc(t.title)}</td><td>${esc((d.projects.find(p=>p.id===t.projectId)||{}).name||'')}</td><td>${status(t.status)}</td><td class='${alerts.some(a=>a.id===t.id)?'overdue':''}'>${formatDate(t.deadline)}${alerts.some(a=>a.id===t.id)?' ⚠️':''}</td></tr>`).join('')}</table></section>`);
+  user()
+})();
+</script></body></html>

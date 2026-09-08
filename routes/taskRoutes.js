@@ -1,0 +1,1 @@
+const r=require('express').Router(),c=require('../controllers/taskController'),{requireAuth}=require('../middleware/authMiddleware'),{requireRole}=require('../middleware/roleMiddleware');r.use(requireAuth);r.get('/',c.list);r.post('/',c.create);r.put('/:id',c.update);r.delete('/:id',requireRole('ADMIN'),c.remove);module.exports=r;

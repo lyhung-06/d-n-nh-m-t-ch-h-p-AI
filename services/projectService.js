@@ -1,0 +1,1 @@
+const P=require('../models/Project'),T=require('../models/Task');exports.recalculate=i=>{const ts=T.byProject(i),p=P.find(i);if(!p)return null;const progress=ts.length?Math.round(ts.filter(t=>t.status==='DONE').length/ts.length*100):0;return P.update(i,{progress,status:progress===100?'COMPLETED':progress?'IN_PROGRESS':'PLANNING'})};

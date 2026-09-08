@@ -1,0 +1,111 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Quản trị viên",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$UGMiDdCZb1/db.oykTeta.PQ/iYLvJkdU6HmuZ5rEmkJn3zgPsuk2",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "name": "Nguyễn Văn A",
+      "email": "member@gmail.com",
+      "password": "$2a$10$pZg7n/SNeS/GlxJI3X64ueFzBTPX3QP3CtJjJY6zriue.r/fgfn8y",
+      "role": "MEMBER"
+    },
+    {
+      "id": 3,
+      "name": "admina",
+      "email": "admina@gmail.com",
+      "password": "$2a$10$diVqNf2hwreGj2BOkemk0.1Tz2lvmNXc9awgXAt4iQ9D2yzMapPtC",
+      "role": "MEMBER"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website quản lý dự án",
+      "description": "Hệ thống quản lý dự án nhóm tích hợp AI",
+      "status": "IN_PROGRESS",
+      "progress": 70,
+      "ownerId": 1,
+      "deadline": "2026-09-15"
+    },
+    {
+      "id": 2,
+      "name": "Ứng dụng bán hàng",
+      "description": "Dự án demo môn học",
+      "status": "PLANNING",
+      "progress": 25,
+      "ownerId": 2,
+      "deadline": "2026-10-01"
+    },
+    {
+      "id": 3,
+      "name": "hvhdvs",
+      "description": "",
+      "status": "PLANNING",
+      "progress": 20,
+      "ownerId": 1,
+      "deadline": "2026-12-20"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Thiết kế giao diện",
+      "description": "Thiết kế UI",
+      "projectId": 1,
+      "assigneeId": 2,
+      "priority": "HIGH",
+      "status": "DONE",
+      "deadline": "2026-08-20"
+    },
+    {
+      "id": 2,
+      "title": "Xây dựng backend",
+      "description": "Tạo API",
+      "projectId": 1,
+      "assigneeId": 1,
+      "priority": "HIGH",
+      "status": "IN_PROGRESS",
+      "deadline": "2026-08-28"
+    },
+    {
+      "id": 3,
+      "title": "Tích hợp AI",
+      "description": "Module AI",
+      "projectId": 1,
+      "assigneeId": 1,
+      "priority": "MEDIUM",
+      "status": "TODO",
+      "deadline": "2026-09-05"
+    },
+    {
+      "id": 4,
+      "title": "Thiết kế database",
+      "description": "Thiết kế dữ liệu",
+      "projectId": 2,
+      "assigneeId": 2,
+      "priority": "MEDIUM",
+      "status": "TODO",
+      "deadline": "2026-08-10"
+    },
+    {
+      "id": 5,
+      "title": "test he thong",
+      "description": "",
+      "projectId": 1,
+      "assigneeId": 1,
+      "priority": "HIGH",
+      "status": "TODO",
+      "deadline": "2026-07-10"
+    }
+  ],
+  "counters": {
+    "users": 3,
+    "projects": 3,
+    "tasks": 5
+  }
+}
